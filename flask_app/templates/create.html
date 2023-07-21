@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Project Log Create</title>
+</head>
+
+<body style="background-color: beige;">
+    <div class="container row justify-content-center mx-auto">
+        <!------------------ Header ------------------>
+        <div class="row border border-dark p-2 bg-secondary text-white">
+            <h1 class="col-5 align-self-center">Welcome, {{user.first_name}}</h1>
+            <a href="/dashboard" class="btn btn-secondary offset-1 col-2 fs-5 align-self-center">MY PROJECTS</a>
+            <a href="/projects/all" class="btn btn-secondary offset-0 col-2 fs-5 align-self-center">ALL PROJECTS</a>
+            <a href="/logout" class="btn btn-secondary offset-0 col-2 fs-5 align-self-center">LOGOUT</a>
+        </div>
+        <!------------------ Header ------------------>
+        <!------------------ Add New Project / Form------------------>
+        <div class="col-12 p-2 border bg-light border-dark">
+            <form action="/create/project" method="post">
+                <h2 class="p-2 text-center">Creating New Project</h2>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p class="alert alert-danger card invalid-feedback mx-0 mb-0 p-1 text-center">{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <div class="col-12 d-flex flex-row m-2 p-2 justify-content-evenly">
+                    <div class="col-5 form-group fs-4">
+                        <label for="project_name" class="form-label mx-2">Project Name:</label>
+                        <input type="text" name="project_name" id="project_name" class="form-control">
+                    </div>
+                    <div class="col-5 form-group fs-4">
+                        <label for="client_name" class="form-label mx-2">Client Name:</label>
+                        <input type="text" name="client_name" id="client_name" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 d-flex flex-row m-2 p-2 justify-content-evenly">
+                    <div class="col-5 form-group fs-4">
+                        <label for="start_date" class="form-label mx-2">Start Date:</label>
+                        <input type="date" name="start_date" id="start_date" class="form-control">
+                    </div>
+                    <div class="col-5 form-group fs-4">
+                        <label for="due_date" class="form-label mx-2">Due Date:</label>
+                        <input type="date" name="due_date" id="due_date" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12 d-flex flex-row m-2 justify-content-evenly">
+                    <div class="form-group fs-4">
+                        <label for="word_count" class="form-label mx-2">Word Count:</label>
+                        <input type="number" name="word_count" id="word_count" class="form-control" placeholder="0">
+                    </div>
+                    <p class="align-self-end">x</p>
+                    <div class="form-group fs-4">
+                        <label for="word_rate" class="form-label mx-2">Word Rate:</label>
+                        <input type="float" name="word_rate" id="word_rate" class="form-control" placeholder="0.00000">
+                    </div>
+                    <p class="align-self-end">=</p>
+                    <div class="form-group fs-4">
+                        <label for="amount_total" class="form-label mx-2">Amount Total:</label>
+                        <input type="float" name="amount_total" id="amount_total" class="form-control"
+                            placeholder="$0.00">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg align-self-end">Create
+                        Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
